@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzRateModule } from 'ng-zorro-antd/rate';
+import { NzQRCodeModule } from 'ng-zorro-antd/qr-code';
+import { NzImageModule } from 'ng-zorro-antd/image';
 
 registerLocaleData(en);
 
@@ -31,7 +33,9 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     NzCardModule,
-    NzRateModule
+    NzRateModule,
+    NzQRCodeModule,
+    NzImageModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US }

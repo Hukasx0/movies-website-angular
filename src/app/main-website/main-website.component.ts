@@ -21,14 +21,15 @@ export class MainWebsiteComponent implements OnInit {
   }
 
   private get_movies_data(KLUCZ_API: string): void {
-    // Klucz API do themoviedb.org
-    // https://www.themoviedb.org/
     fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${KLUCZ_API}`)
           .then(response => {
             return response.json();
           })
           .then(json_data => {
-            this.movies_data = json_data.results;
+            this.movies_data = json_data.results.map((movie: any) => {
+              movie.vote_average = (movie.vote_average / 2).toFixed(1);
+              return movie;
+            });
           })
           .catch(err => {
             console.log(err);

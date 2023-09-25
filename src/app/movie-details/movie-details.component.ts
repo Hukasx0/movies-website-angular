@@ -24,7 +24,7 @@ export class MovieDetailsComponent implements OnInit {
     });
   }
 
-  get_movie_details(id: string, KLUCZ_API: string): void {
+  private get_movie_details(id: string, KLUCZ_API: string): void {
     // Klucz API do themoviedb.org
     // https://www.themoviedb.org/
     fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${KLUCZ_API}`)
@@ -39,5 +39,9 @@ export class MovieDetailsComponent implements OnInit {
       .catch(err => {
         console.log(err);
       });
+  }
+
+  go_home() {
+    this.router.navigate(['/']);
   }
 }

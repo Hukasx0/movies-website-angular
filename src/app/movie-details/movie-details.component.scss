@@ -1,0 +1,46 @@
+.movie-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    .details {
+        text-align: center;
+        max-width: 500px;
+        margin-top: 20px;
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        h3 {
+            font-size: 18px;
+        }
+        .genres {
+            display: flex;
+            direction: row;
+            justify-content: center;
+            gap: 10px;
+        }
+        .rating {
+            margin-top: 10px;
+        }
+      }
+}
+
+nav {
+    display: flex;
+    position: sticky;
+    width: 100%;
+    background-color: #E6676B;
+    button {
+        background-color: transparent;
+        font-size: 25px;
+        margin-left: 5%;
+        border: none;
+        color: white;
+        cursor: pointer;
+        &:hover {
+            color: #16161d;
+        }
+    }
+}

@@ -1,11 +1,19 @@
-<div *ngFor="let movie of movies_data">
-    <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate" [routerLink]="['/movie', movie.id]">
+<div class="movie-card-container">
+  <div *ngFor="let movie of movies_data">
+    <nz-card class="movie-card" nzHoverable style="width:240px" [nzCover]="coverTemplate" [routerLink]="['/movie', movie.id]">
       <h2>{{ movie.title }}</h2>
       <p>{{ movie.overview }}</p>
+      <nz-rate class="rating" [ngModel]="movie.vote_average" nzAllowHalf nzDisabled></nz-rate>
       <p>{{ movie.release_date }}</p>
     </nz-card>
     <ng-template #coverTemplate>
-        <img [src]="'https://image.tmdb.org/t/p/w220_and_h330_face/' + movie.backdrop_path" [alt]="movie.title"/>
+        <img [src]="'https://image.tmdb.org/t/p/w220_and_h330_face/' + movie.poster_path" [alt]="movie.title"/>
       </ng-template>
   </div>
-  
+</div>
+<footer class="footer">
+  <div class="footer-content">
+    <p>movies-website-angular 2023 by <a href="https://github.com/Hukasx0" target="_blank">Hubert "Hukasx0" Kasperek</a></p>
+    <p>Movies data taken from <a href="https://developer.themoviedb.org/reference/intro/getting-started" target="_blank">TMDb API</a></p>
+  </div>
+</footer>

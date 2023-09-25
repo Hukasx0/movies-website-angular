@@ -1,7 +1,17 @@
-<div>
-    <img [src]="'https://image.tmdb.org/t/p/w220_and_h330_face/' + movie.backdrop_path" [alt]="movie.title"/>
-    <h1>{{ movie.title }}</h1>
-    <h3>{{ movie.overview }}</h3>
-    <nz-rate [ngModel]="movie.vote_average" nzAllowHalf></nz-rate>
-    <p>Release date: {{ movie.release_date }}</p>
+<nav>
+    <button (click)="go_home()">←</button>
+</nav>
+<div class="movie-container">
+    <img nz-image [nzSrc]="'https://image.tmdb.org/t/p/w220_and_h330_face/' + movie.backdrop_path" [alt]="movie.title" style="cursor: pointer;"/>
+    <div class="details">
+        <h1>{{ movie.title }}</h1>
+        <h3>{{ movie.overview }}</h3>
+        <div class="genres">
+            <p *ngFor="let genre of movie.genres">{{ genre.name }}</p>
+        </div>
+                <!-- QR code na stronę internetową filmu (tą którą podaje API) -->
+        <nz-qrcode [nzValue]="movie.homepage"></nz-qrcode> <br />
+        <nz-rate class="rating" [ngModel]="movie.vote_average" nzAllowHalf nzDisabled></nz-rate>
+        <p>Release date: {{ movie.release_date }}</p>
+    </div>
 </div>
