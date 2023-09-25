@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-details',
@@ -9,19 +10,23 @@ import { ActivatedRoute } from '@angular/router';
 export class MovieDetailsComponent implements OnInit {
   movie: any = {};
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
+    const stored_api_key = localStorage.getItem('TMDB_KEY');
     this.route.params.subscribe(params => {
       const movie_id = params['id'];
-      this.get_movie_details(movie_id);
+      if (stored_api_key) {
+        this.get_movie_details(movie_id, stored_api_key);
+      } else {
+        this.router.navigate(['/']);
+      }
     });
   }
 
-  get_movie_details(id: string): void {
+  get_movie_details(id: string, KLUCZ_API: string): void {
     // Klucz API do themoviedb.org
     // https://www.themoviedb.org/
-    const KLUCZ_API = '';
     fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${KLUCZ_API}`)
       .then(response => {
         return response.json();

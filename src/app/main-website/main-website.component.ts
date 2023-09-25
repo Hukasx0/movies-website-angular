@@ -11,13 +11,18 @@ export class MainWebsiteComponent implements OnInit {
   constructor () {}
 
   ngOnInit(): void {
-      this.get_movies_data();
+    const stored_api_key = localStorage.getItem('TMDB_KEY');
+
+    if (stored_api_key) {
+      this.get_movies_data(stored_api_key);
+    } else {
+      this.prompt_api_key();
+    }
   }
 
-  private get_movies_data(): void {
+  private get_movies_data(KLUCZ_API: string): void {
     // Klucz API do themoviedb.org
     // https://www.themoviedb.org/
-    const KLUCZ_API = '';
     fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${KLUCZ_API}`)
           .then(response => {
             return response.json();
@@ -28,5 +33,16 @@ export class MainWebsiteComponent implements OnInit {
           .catch(err => {
             console.log(err);
           });
+  }
+
+  private prompt_api_key(): void {
+    const prompted_api_key = prompt('Podaj klucz API TMDB, aby strona mogła działać:');
+  
+    if (prompted_api_key) {
+      localStorage.setItem('TMDB_KEY', prompted_api_key);
+      this.get_movies_data(prompted_api_key);
+    } else {
+      alert('Strona nie zadziała bez klucza API');
+    }
   }
 }
