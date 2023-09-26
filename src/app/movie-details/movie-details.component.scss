@@ -1,9 +1,12 @@
+.details {
+    height: 100vh;
+}
 .movie-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    margin-top: 10px;
     .details {
         text-align: center;
         max-width: 500px;
